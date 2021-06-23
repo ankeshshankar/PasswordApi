@@ -2,6 +2,7 @@ package com.password.api.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -15,7 +16,9 @@ import javax.validation.constraints.NotBlank;
 
 public class Password {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    @Column(name = "password_id")
     private String password_id;
     @NotBlank
     private String password_id_account_website;
@@ -30,18 +33,57 @@ public class Password {
         super();
     }
 
-    public Password(String password_id, String password_id_account_website, String password_id_account_username, String password_id_account_image, String password_id_account_password) {
-        this.password_id = password_id;
+    public Password(String password_id_account_website, String password_id_account_username, String password_id_account_image, String password_id_account_password) {
         this.password_id_account_website = password_id_account_website;
         this.password_id_account_username = password_id_account_username;
         this.password_id_account_image = password_id_account_image;
         this.password_id_account_password = password_id_account_password;
     }
 
+    public String getPassword_id() {
+        return password_id;
+    }
+
+    public void setPassword_id(String password_id) {
+        this.password_id = password_id;
+    }
+
+    public String getPassword_id_account_website() {
+        return password_id_account_website;
+    }
+
+    public void setPassword_id_account_website(String password_id_account_website) {
+        this.password_id_account_website = password_id_account_website;
+    }
+
+    public String getPassword_id_account_username() {
+        return password_id_account_username;
+    }
+
+    public void setPassword_id_account_username(String password_id_account_username) {
+        this.password_id_account_username = password_id_account_username;
+    }
+
+    public String getPassword_id_account_image() {
+        return password_id_account_image;
+    }
+
+    public void setPassword_id_account_image(String password_id_account_image) {
+        this.password_id_account_image = password_id_account_image;
+    }
+
+    public String getPassword_id_account_password() {
+        return password_id_account_password;
+    }
+
+    public void setPassword_id_account_password(String password_id_account_password) {
+        this.password_id_account_password = password_id_account_password;
+    }
+
     @Override
     public String toString() {
         return "Password{" +
-                "password_id='" + password_id + '\'' +
+                ", password_id='" + password_id + '\'' +
                 ", password_id_account_website='" + password_id_account_website + '\'' +
                 ", password_id_account_username='" + password_id_account_username + '\'' +
                 ", password_id_account_image='" + password_id_account_image + '\'' +
