@@ -1,7 +1,6 @@
 package com.password.api.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -14,8 +13,7 @@ import javax.validation.constraints.NotBlank;
         allowGetters = true)
 public class User {
     @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_id")
     private String user_id;
     @NotBlank
@@ -28,17 +26,33 @@ public class User {
     private String mobileNumber;
     @NotBlank
     private String profilePic;
+    @NotBlank
+    private String userToken;
 
     public User() {
         super();
     }
 
-    public User(String username, String password, String email, String mobileNumber, String profilePic) {
+    public User(String user_id, String username, String password, String email, String mobileNumber, String profilePic, String userToken) {
+        this.user_id = user_id;
         this.username = username;
         this.password = password;
         this.email = email;
         this.mobileNumber = mobileNumber;
         this.profilePic = profilePic;
+        this.userToken = userToken;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getUserToken() {
+        return userToken;
+    }
+
+    public void setUserToken(String userToken) {
+        this.userToken = userToken;
     }
 
     public String getUser_id() {
@@ -55,10 +69,6 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
     }
 
     public void setPassword(String password) {

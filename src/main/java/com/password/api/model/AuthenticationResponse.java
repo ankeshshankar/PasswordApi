@@ -5,13 +5,13 @@ import java.io.Serializable;
 
 public class AuthenticationResponse implements Serializable {
 
-    private final String jwt;
+    private final String jwtToken;
 
-    public AuthenticationResponse(String jwt) {
-        this.jwt = jwt;
+    public AuthenticationResponse(String jwtToken) {
+        this.jwtToken = jwtToken;
     }
 
-    public String getJwt() {
-        return jwt;
+    public String getJwtToken() {
+        return jwtToken;
     }
 }

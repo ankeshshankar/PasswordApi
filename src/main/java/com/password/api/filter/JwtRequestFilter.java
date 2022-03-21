@@ -1,5 +1,6 @@
 package com.password.api.filter;
 
+import com.password.api.controller.UserController;
 import com.password.api.service.MyUserDetailsService;
 import com.password.api.util.JwtUtil;
 import org.jetbrains.annotations.NotNull;
@@ -40,6 +41,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         if (authorizationHeader != null) {
             jwt = authorizationHeader;
             username = jwtUtil.extractUsername(jwt);
+            UserController.token = authorizationHeader;
         }
 
 

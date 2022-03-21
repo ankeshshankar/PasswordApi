@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/password/user")
 public class UserController {
+
+    public static String token = "";
     final
     UserRepo userRepo;
 
@@ -18,6 +20,15 @@ public class UserController {
     public @ResponseBody
     Iterable<User> getAllUser() {
         return userRepo.findAll();
+    }
+
+    @RequestMapping(value = "/getUserByUsername", params = {"username"})
+    User getParams(@RequestParam("username") String username) {
+        if (userRepo.getUserByUsername(username).getUserToken().equals(token)) {
+            return userRepo.getUserByUsername(username);
+        } else {
+            return null;
+        }
     }
 
     @PostMapping(path = "/addNewUser")

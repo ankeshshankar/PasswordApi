@@ -2,8 +2,11 @@ package com.password.api.controller;
 
 import com.password.api.model.AuthenticationRequest;
 import com.password.api.model.AuthenticationResponse;
+import com.password.api.model.User;
+import com.password.api.repository.UserRepo;
 import com.password.api.service.MyUserDetailsService;
 import com.password.api.util.JwtUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -23,6 +26,9 @@ public class AuthController {
     private final JwtUtil jwtTokenUtil;
 
     private final MyUserDetailsService userDetailsService;
+
+    @Autowired
+    private UserRepo userRepo;
 
     public AuthController(AuthenticationManager authenticationManager, JwtUtil jwtTokenUtil, MyUserDetailsService userDetailsService) {
         this.authenticationManager = authenticationManager;
@@ -47,6 +53,9 @@ public class AuthController {
                 .loadUserByUsername(authenticationRequest.getUsername());
 
         final String jwt = jwtTokenUtil.generateToken(userDetails);
+        User currenUser = userRepo.getUserByUsername(userDetails.getUsername());
+        currenUser.setUserToken(jwt);
+        userRepo.save(currenUser);
 
         return ResponseEntity.ok(new AuthenticationResponse(jwt));
     }
