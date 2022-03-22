@@ -28,16 +28,20 @@ public class Password {
     private String password_id_account_image;
     @NotBlank
     private String password_id_account_password;
+    @NotBlank
+    private String password_id_account_user_token;
 
     public Password() {
         super();
     }
 
-    public Password(String password_id_account_website, String password_id_account_username, String password_id_account_image, String password_id_account_password) {
+    public Password(String password_id, String password_id_account_website, String password_id_account_username, String password_id_account_image, String password_id_account_password, String password_id_account_user_token) {
+        this.password_id = password_id;
         this.password_id_account_website = password_id_account_website;
         this.password_id_account_username = password_id_account_username;
         this.password_id_account_image = password_id_account_image;
         this.password_id_account_password = password_id_account_password;
+        this.password_id_account_user_token = password_id_account_user_token;
     }
 
     public String getPassword_id() {
@@ -80,14 +84,23 @@ public class Password {
         this.password_id_account_password = password_id_account_password;
     }
 
+    public String getPassword_id_account_user_token() {
+        return password_id_account_user_token;
+    }
+
+    public void setPassword_id_account_user_token(String password_id_account_user_token) {
+        this.password_id_account_user_token = password_id_account_user_token;
+    }
+
     @Override
     public String toString() {
         return "Password{" +
-                ", password_id='" + password_id + '\'' +
+                "password_id='" + password_id + '\'' +
                 ", password_id_account_website='" + password_id_account_website + '\'' +
                 ", password_id_account_username='" + password_id_account_username + '\'' +
                 ", password_id_account_image='" + password_id_account_image + '\'' +
                 ", password_id_account_password='" + password_id_account_password + '\'' +
+                ", password_id_account_user_token='" + password_id_account_user_token + '\'' +
                 '}';
     }
 }

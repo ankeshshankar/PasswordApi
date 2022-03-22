@@ -27,7 +27,7 @@ public class UserController {
         if (userRepo.getUserByUsername(username).getUserToken().equals(token)) {
             return userRepo.getUserByUsername(username);
         } else {
-            return null;
+            return new User(null, "Not Found", null, null, null, null, null);
         }
     }
 

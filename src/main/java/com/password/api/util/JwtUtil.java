@@ -14,7 +14,7 @@ import java.util.function.Function;
 @Service
 public class JwtUtil {
 
-    private final String SECRET_KEY = "ankesh";
+    private final String SECRET_KEY = "vrlrs}-&hPAlndecKwNsP96e<m(y|0e/z46EbR0Y?98j)Aw|O]ChtL&/`0fn7A%";
 
     //retrieve username from jwt token
     public String extractUsername(String token) {

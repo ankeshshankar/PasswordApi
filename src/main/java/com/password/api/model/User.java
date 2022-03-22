@@ -108,6 +108,7 @@ public class User {
                 ", email='" + email + '\'' +
                 ", mobileNumber='" + mobileNumber + '\'' +
                 ", profilePic='" + profilePic + '\'' +
+                ", userToken='" + userToken + '\'' +
                 '}';
     }
 }
